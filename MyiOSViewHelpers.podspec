@@ -15,8 +15,6 @@ Pod::Spec.new do |spec|
     
 	spec.source_files = 'MyiOSViewHelpers/*.{h,m}'
 	
-	#spec.subspec "View" do |view|
-	#	spec.source_files = 'MyiOSViewHelpers/*.{h,m}'
 		spec.subspec "Categories" do |view_categories|
 			view_categories.source_files = 'MyiOSViewHelpers/Categories/*.{h,m}'
             
@@ -91,6 +89,4 @@ Pod::Spec.new do |spec|
             end
         end
         
-		
-	#end
 end

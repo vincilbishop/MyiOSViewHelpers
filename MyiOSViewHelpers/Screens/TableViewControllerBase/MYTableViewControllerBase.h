@@ -13,6 +13,9 @@
 @property (nonatomic,strong) NSMutableArray *objects;
 @property (nonatomic,strong) NSString *reuseIdentifier;
 
+@property (nonatomic,strong) NSMutableArray *predicates;
+@property (nonatomic,strong) NSMutableArray *sortDescriptors;
+
 - (void) reloadWithArray:(NSArray*)objects;
 - (void) reloadSection:(NSUInteger)section withArray:(NSArray*)objects;
 - (id) objectForIndexPath:(NSIndexPath*)indexPath;
@@ -24,6 +27,5 @@
 
 - (id) selectedObject;
 - (NSArray*) selectedObjects;
-
 
 @end

@@ -18,9 +18,10 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        // Custom initialization
-        //_reuseIdentifier = @"Cell";
+        
         self.objects = [NSMutableArray new];
+        self.sortDescriptors = [NSMutableArray new];
+        self.predicates = [NSMutableArray new];
     }
     return self;
 }
@@ -53,13 +54,24 @@
 {
     if (self.objects && objects) {
         
-        //DDLogVerbose(@"self.objects.count = %i / section = %i",self.objects.count,section);
+        NSArray *sortedAndFilteredObjects = objects;
+        
+        if (self.predicates) {
+            NSCompoundPredicate *compoundPredicate = [[NSCompoundPredicate alloc] initWithType:NSAndPredicateType subpredicates:self.predicates];
+            
+            sortedAndFilteredObjects = [sortedAndFilteredObjects filteredArrayUsingPredicate:compoundPredicate];
+        }
+        
+        if (self.sortDescriptors.count > 0) {
+            sortedAndFilteredObjects = [sortedAndFilteredObjects sortedArrayUsingDescriptors:self.sortDescriptors];
+        }
         
         if (self.objects.count > 0 && self.objects.count > section) {
-            [self.objects replaceObjectAtIndex:section withObject:objects];
+            [self.objects replaceObjectAtIndex:section withObject:sortedAndFilteredObjects];
         } else {
-            [self.objects addObject:objects];
-        }        
+            [self.objects addObject:sortedAndFilteredObjects];
+        }
+        
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [self.tableView reloadData];
         }];
