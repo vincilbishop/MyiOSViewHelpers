@@ -129,7 +129,11 @@
     
     NSString *cellIdentifier = [self cellIdentifierForRowAtIndexPath:indexPath];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = nil;
+    
+    if (cellIdentifier) {
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    }
     
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
@@ -144,7 +148,7 @@
 - (NSString*) cellIdentifierForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     id object = [self objectForIndexPath:indexPath];
-    NSString *cellIdentifier = @"";
+    NSString *cellIdentifier = nil;
     
     if (object) {
         cellIdentifier = NSStringFromClass([object class]);
