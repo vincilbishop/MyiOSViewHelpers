@@ -28,16 +28,21 @@
 
 - (UITableViewCell *) tableView:(UITableView *)tableView configureCell:(MYModelObjectTableViewCellBase*)cell withObject:(NSDictionary*)object atIndexPath:(NSIndexPath *)indexPath;
 {
-    //id<MYParseableModelObject> modelObject = [[self.modelClass parser] parseDictionary:object];
-    cell.parentTableViewController = self;
+    if ([cell respondsToSelector:@selector(setParentTableViewController:)]) {
+        cell.parentTableViewController = self;
+    }
+    
     return [self tableView:tableView configureCell:cell withModelObject:object atIndexPath:indexPath];
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView configureCell:(UITableViewCell*)cell withModelObject:(MYModelObjectBase*)object atIndexPath:(NSIndexPath *)indexPath
 {
     MYModelObjectTableViewCellBase *modelCell = (MYModelObjectTableViewCellBase*)cell;
-    [modelCell configureWithModelObject:object];
     
+    if ([modelCell isKindOfClass:[MYModelObjectTableViewCellBase class]]) {
+        [modelCell configureWithModelObject:object];
+    }
+        
     return modelCell;
 }
 
@@ -53,7 +58,7 @@
         Class<MYParseableModelObject> modelClass = NSClassFromString(modelClassName);
         NSArray *strongObjects = [[modelClass parser] parseArray:objectDictionaries];
         [self reloadSection:section withArray:strongObjects];
-
+        
     }
 }
 
