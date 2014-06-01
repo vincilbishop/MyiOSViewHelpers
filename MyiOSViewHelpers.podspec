@@ -55,10 +55,17 @@ Pod::Spec.new do |spec|
 			end
 			
 			screens.subspec "FormViewController" do |form|
+                form.prefix_header_contents = '#import "MyiOSLogicCategories.h"', '#import "MyiOSLogicBlocks.h"', '#import "UIAlertView+Blocks.h"'
 				form.source_files = 'MyiOSViewHelpers/Screens/FormViewController/*.{h,m}'
-				form.ios.dependency 'RDVKeyboardAvoiding', '~>1.1.0'
+				form.ios.dependency 'UIAlertView+Blocks', '~>0.8'
+                form.ios.dependency 'TPKeyboardAvoiding', '~>1.2.3'
 				form.ios.dependency 'US2FormValidator', '~> 1.1.2'
+                form.ios.dependency 'ALPValidator', '~> 0.0.3'
+                form.ios.dependency 'CWStatusBarNotification', '~> 2.1.1'
+                form.ios.dependency 'APLKeyboardControls', '~>0.1.2'
+                form.ios.dependency 'ASCFlatUIColor', '~>0.1.0'
 				form.ios.dependency 'MyiOSHelpers/Logic/Blocks'
+                form.ios.dependency 'MyiOSHelpers/Logic/Categories'
 				form.ios.dependency 'MyiOSViewHelpers/Categories'
 			end
 			

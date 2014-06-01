@@ -7,7 +7,6 @@
 //
 
 #import "MYFormViewControllerBase.h"
-#import "RDVKeyboardAvoidingScrollView.h"
 #import "US2FormValidator.h"
 #import "UIView+HierarchyAdditions.h"
 
@@ -32,6 +31,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.keyboardControls = [[APLKeyboardControls alloc] initWithInputFields:self.textFields];
+    self.keyboardControls.hasPreviousNext = YES;
+    self.statusBarNotification = [CWStatusBarNotification new];
+    self.validators = [NSMutableArray new];
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,55 +45,64 @@
 
 #pragma mark - Validation Methods -
 
-- (void) validateForm
+- (void) addValidator:(ALPValidator*)validator forControl:(UIControl*)control
 {
-    // Create string which will contain the first error in form
-    self.errorString = [NSMutableString string];
-    self.isValid = YES;
+    __block MYFormViewControllerBase *blockSelf = self;
+    self.statusBarNotification.notificationLabelTextColor = [UIColor whiteColor];
     
-    for (US2ValidatorTextField *textUI in self.textFields) {
-        
-        // If the text UI has invalid text remember the violated condition with highest priority
-        if ([textUI conformsToProtocol:@protocol(US2ValidatorUIProtocol)] && textUI.isValid == NO)
-        {
-            self.isValid = NO;
-            
-            US2Validator *validator = [textUI validator];
-            US2ConditionCollection *conditionCollection = [validator checkConditions:[textUI text]];
-            US2Condition *violatedCondition = [conditionCollection conditionAtIndex:0];
-            
-            NSMutableString *violatedString = [NSMutableString string];
-            
-            if (textUI.placeholder) {
-                [violatedString appendString:textUI.placeholder];
-                [violatedString appendString:@": "];
-
-            }
-            
-            [violatedString appendString:[violatedCondition localizedViolationString]];
-            [self.errorString appendString:violatedString];
-            break;
+    validator.validatorStateChangedHandler = ^(ALPValidatorState newState) {
+        switch (newState) {
+                
+            case ALPValidatorValidationStateValid:
+                // do happy things
+                [blockSelf.statusBarNotification dismissNotification];
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    blockSelf.statusBarNotification.notificationLabelBackgroundColor = [ASCFlatUIColor emeraldColor];
+                    [blockSelf.statusBarNotification displayNotificationWithMessage:@"Valid" forDuration:3];
+                } afterDelay:0.27];
+                
+                break;
+                
+            case ALPValidatorValidationStateInvalid:
+                // do unhappy things
+                blockSelf.statusBarNotification.notificationLabelBackgroundColor = [UIColor redColor];
+                
+                [blockSelf.statusBarNotification displayNotificationWithMessage:validator.errorMessages[0] completion:NULL];
+                
+                break;
+                
+            case ALPValidatorValidationStateWaitingForRemote:
+                // do loading indicator things
+                
+                break;
+                
         }
-    }
-
+    };
+    [control attachValidator:validator];
+    [self.validators addObject:validator];
 }
 
-- (void) showAlertIfInvalidWithCompletion:(MYCompletionBlock)completion
+- (BOOL) formIsValid
 {
-    [self validateForm];
-    // Show alert if there was an invalid text in UI
-    if (self.errorString.length > 0)
-    {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Invalid Form"
-                                                            message:self.errorString
-                                                           delegate:self
-                                                  cancelButtonTitle:@"Continue"
-                                                  otherButtonTitles:nil, nil];
-        [alertView show];
-    }
+    __block BOOL formIsValid = YES;
     
-    if (completion) {
-        completion(self,YES,nil,self);
+    [self.validators enumerateObjectsUsingBlock:^(ALPValidator *validator, NSUInteger idx, BOOL *stop) {
+        
+        if (!validator.isValid) {
+            formIsValid = validator.isValid;
+            *stop = YES;
+        }
+    }];
+    
+    return formIsValid;
+}
+
+- (void) showAlertIfFormInvalidWithSuccess:(MYCompletionBlock)successBlock
+{
+    if (self.formIsValid) {
+        successBlock(self,YES,nil,[NSNumber numberWithBool:YES]);
+    } else {
+        [UIAlertView showWithTitle:@"Error" message:@"Please correct the form to continue" cancelButtonTitle:@"Ok" otherButtonTitles:nil tapBlock:NULL];
     }
 }
 
@@ -131,32 +143,10 @@
     return YES;
 }
 
-#pragma mark - US2ValidatorUIDelegate -
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [self.statusBarNotification dismissNotification];
+}
 
-/**
- Will be called when the text in the text field changes. Has its origin in listening for UITextFieldTextDidChangeNotification.
- 
- @param validatorUI Instance of the sending validator text UI of type US2ValidatorTextField
- */
-- (void)validatorUIDidChange:(id <US2ValidatorUIProtocol>)validatorUI
-{}
-
-/**
- Will be called when a status changes from true to false or false to true.
- 
- @param validatorTextView Instance of the sending validator text field of type US2ValidatorTextView
- @param isValid Returns the status of the validation check
- */
-- (void)validatorUI:(id <US2ValidatorUIProtocol>)validatorUI changedValidState:(BOOL)isValid
-{}
-
-/**
- Will be called if the text field check failed.
- 
- @param validatorTextView Instance of the sending validator text field of type US2ValidatorTextView
- @param conditions Collection of type US2ConditionCollection listing all violated conditions.
- */
-- (void)validatorUI:(id <US2ValidatorUIProtocol>)validatorUI violatedConditions:(US2ConditionCollection *)conditions
-{}
 
 @end

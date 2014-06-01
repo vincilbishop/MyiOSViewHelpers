@@ -8,22 +8,29 @@
 
 #import <UIKit/UIKit.h>
 #import "US2ValidatorUIDelegate.h"
+#import "ALPValidator.h"
 #import "MyiOSLogicBlocks.h"
-
-@class RDVKeyboardAvoidingScrollView;
+#import "TPKeyboardAvoidingScrollView.h"
+#import "APLKeyboardControls.h"
+#import "CWStatusBarNotification.h"
+#import "ASCFlatUIColor.h"
 
 @interface MYFormViewControllerBase : UIViewController<US2ValidatorUIDelegate>
 {
     NSMutableArray *_textFields;
 }
+
 @property (strong, nonatomic) NSMutableArray *textFields;
-
-
+@property (strong, nonatomic) NSMutableArray *validators;
 @property (nonatomic) BOOL isValid;
-
 @property (nonatomic,strong)  NSMutableString *errorString;
+@property (nonatomic,strong) APLKeyboardControls *keyboardControls;
+@property (nonatomic,strong) CWStatusBarNotification *statusBarNotification;
 
-- (void) validateForm;
-- (void) showAlertIfInvalidWithCompletion:(MYCompletionBlock)completion;
+- (void) addValidator:(ALPValidator*)validator forControl:(UIControl*)control;
+
+- (BOOL) formIsValid;
+
+- (void) showAlertIfFormInvalidWithSuccess:(MYCompletionBlock)successBlock;
 
 @end
