@@ -56,10 +56,6 @@
             case ALPValidatorValidationStateValid:
                 // do happy things
                 [blockSelf.statusBarNotification dismissNotification];
-                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    blockSelf.statusBarNotification.notificationLabelBackgroundColor = [ASCFlatUIColor emeraldColor];
-                    [blockSelf.statusBarNotification displayNotificationWithMessage:@"Valid" forDuration:3];
-                } afterDelay:0.27];
                 
                 break;
                 
@@ -102,7 +98,7 @@
     if (self.formIsValid) {
         successBlock(self,YES,nil,[NSNumber numberWithBool:YES]);
     } else {
-        [UIAlertView showWithTitle:@"Error" message:@"Please correct the form to continue" cancelButtonTitle:@"Ok" otherButtonTitles:nil tapBlock:NULL];
+        [UIAlertView showWithTitle:@"Error" message:@"The form is not valid. Please check the input and try again." cancelButtonTitle:@"Ok" otherButtonTitles:nil tapBlock:NULL];
     }
 }
 

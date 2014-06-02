@@ -55,7 +55,7 @@ Pod::Spec.new do |spec|
 			end
 			
 			screens.subspec "FormViewController" do |form|
-                form.prefix_header_contents = '#import "MyiOSLogicCategories.h"', '#import "MyiOSLogicBlocks.h"', '#import "UIAlertView+Blocks.h"'
+                form.prefix_header_contents = '#import "MyiOSLogicCategories.h"', '#import "MyiOSLogicBlocks.h"', '#import "UIAlertView+Blocks.h"', '#import "Underscore.h"', '#ifndef _', '#define _ Underscore', '#endif'
 				form.source_files = 'MyiOSViewHelpers/Screens/FormViewController/*.{h,m}'
 				form.ios.dependency 'UIAlertView+Blocks', '~>0.8'
                 form.ios.dependency 'TPKeyboardAvoiding', '~>1.2.3'
@@ -67,6 +67,7 @@ Pod::Spec.new do |spec|
 				form.ios.dependency 'MyiOSHelpers/Logic/Blocks'
                 form.ios.dependency 'MyiOSHelpers/Logic/Categories'
 				form.ios.dependency 'MyiOSViewHelpers/Categories'
+                form.ios.dependency 'Underscore.m', '~>0.2.1'
 			end
 			
 			screens.subspec "LoginViewController" do |login|
