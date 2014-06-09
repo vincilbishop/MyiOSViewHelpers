@@ -64,4 +64,12 @@
     [self.mm_drawerController bouncePreviewForDrawerSide:MMDrawerSideRight completion:nil];
 }
 
+#pragma mark - Helpers -
+
+- (void) goToViewControllerWithIdentifier:(NSString *)identifier
+{
+    [[MYDrawerViewController sharedViewController] goToViewControllerWithIdentifier:identifier storyboard:[UIStoryboard mainStoryboard]];
+    [[MYDrawerViewController sharedViewController] closeDrawerAnimated:YES completion:NULL];
+}
+
 @end

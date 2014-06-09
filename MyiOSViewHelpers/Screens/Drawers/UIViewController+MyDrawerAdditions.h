@@ -15,4 +15,6 @@
 - (void) setupRightMenuButton;
 - (void) setupStandardDrawers;
 
+- (void) goToViewControllerWithIdentifier:(NSString *)identifier;
+
 @end
