@@ -56,14 +56,14 @@
 #pragma mark - Custom Getters
 
 - (UIView *)pickerWithFrame:(CGRect)pickerFrame {
-    UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:pickerFrame];
+    self.datePicker = [[UIDatePicker alloc] initWithFrame:pickerFrame];
 
     if (self.selectedDate) {
-        datePicker.date = self.selectedDate;
+        self.datePicker.date = self.selectedDate;
     }
 
-    datePicker.datePickerMode = self.mode;
-    return datePicker;
+    self.datePicker.datePickerMode = self.mode;
+    return self.datePicker;
 }
 
 - (NSDate *)selectedDate {

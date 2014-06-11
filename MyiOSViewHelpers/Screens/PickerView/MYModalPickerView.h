@@ -13,6 +13,7 @@
 @property (nonatomic, strong) id selectedValue;
 @property (nonatomic, strong) NSString *selectedTitle;
 @property (nonatomic, strong) NSArray *titles;
+@property (nonatomic, strong) UIPickerView *pickerView;
 
 + (MYModalPickerView*) pickerWithValues:(NSArray*)values
                                   titles:(NSArray*)titles

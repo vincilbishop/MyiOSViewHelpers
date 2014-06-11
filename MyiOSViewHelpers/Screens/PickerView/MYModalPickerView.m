@@ -43,12 +43,12 @@
 #pragma mark - Custom Getters
 
 - (UIView *)pickerWithFrame:(CGRect)pickerFrame {
-    UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:pickerFrame];
-    pickerView.dataSource = self;
-    pickerView.delegate = self;
-    pickerView.showsSelectionIndicator = YES;
-    [pickerView selectRow:self.selectedIndex inComponent:0 animated:NO];
-    return pickerView;
+    self.pickerView = [[UIPickerView alloc] initWithFrame:pickerFrame];
+    self.pickerView.dataSource = self;
+    self.pickerView.delegate = self;
+    self.pickerView.showsSelectionIndicator = YES;
+    [self.pickerView selectRow:self.selectedIndex inComponent:0 animated:NO];
+    return self.pickerView;
 }
 
 - (NSString *)selectedTitle {

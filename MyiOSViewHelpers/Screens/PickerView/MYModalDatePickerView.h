@@ -11,7 +11,7 @@
 @property (nonatomic, strong) NSDate *selectedDate;
 @property (nonatomic) UIDatePickerMode mode;
 @property (nonatomic) BOOL showTodayButton;
-
+@property (nonatomic) UIDatePicker *datePicker;
 
 + (MYModalDatePickerView*) pickerWithDate:(NSDate*)date block:(MYModalDatePickerViewCallback)callback;
 + (MYModalDatePickerView*) pickerWithDateAndTime:(NSDate*)date block:(MYModalDatePickerViewCallback)callback;
