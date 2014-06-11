@@ -80,6 +80,13 @@ Pod::Spec.new do |spec|
 				login.ios.dependency 'MBProgressHUD', '~>0.8'
             end
             
+            screens.subspec "PickerView" do |pickerView|
+				pickerView.source_files = 'MyiOSViewHelpers/Screens/PickerView/*.{h,m}'
+				pickerView.ios.dependency 'MyiOSViewHelpers/Screens/PickerView'
+                pickerView.ios.dependency 'MyiOSHelpers/Logic/Blocks'
+				pickerView.ios.dependency 'RMDateSelectionViewController', '~>1.2.1'
+            end
+
             screens.subspec "TableViewControllerBase" do |table|
 				table.source_files = 'MyiOSViewHelpers/Screens/TableViewControllerBase/*.{h,m}'
             end

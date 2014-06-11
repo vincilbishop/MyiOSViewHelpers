@@ -7,8 +7,6 @@
 //
 
 #import "UIViewController+MYDrawerAdditions.h"
-#import "UIViewController+MMDrawerController.h"
-#import "MYDrawerViewController.h"
 
 @implementation UIViewController (MYDrawerAdditions)
 
