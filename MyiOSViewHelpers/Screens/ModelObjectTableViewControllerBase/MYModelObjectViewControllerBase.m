@@ -29,4 +29,31 @@
     self.modelObject = modelObject;
 }
 
+#pragma mark - Details View -
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"pushToDetails"]) {
+        
+        [self setModelObject:self.modelObject forDestination:segue.destinationViewController];
+        
+    }
+}
+
+- (void) setModelObject:(MYModelObjectBase *)modelObject forDestination:(UIViewController*)destinationController
+{
+    MYModelObjectViewControllerBase *controller = nil;
+    
+    if ([destinationController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *navigationController = (UINavigationController*)destinationController;
+        controller = navigationController.topViewController;
+    } else if ([destinationController isKindOfClass:[MYModelObjectViewControllerBase class]]) {
+        controller = destinationController;
+    } else {
+        NSAssert(NO,@"segue.destinationViewController must be kindOfClass:[MYModelObjectViewControllerBase class]");
+    }
+    
+    controller.modelObject = modelObject;
+}
+
 @end

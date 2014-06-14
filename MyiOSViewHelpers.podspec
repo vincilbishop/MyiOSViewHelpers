@@ -93,6 +93,7 @@ Pod::Spec.new do |spec|
             
             screens.subspec "ModelObjectTableViewControllerBase" do |modeltable|
             	modeltable.ios.dependency 'MyiOSHelpers/Logic/ThirdPartyHelpers/KeyValueObjectMapping'
+                modeltable.ios.dependency 'MyiOSViewHelpers/Screens/FormViewController'
                 modeltable.ios.dependency 'MyiOSViewHelpers/Screens/TableViewControllerBase'
 				modeltable.source_files = 'MyiOSViewHelpers/Screens/ModelObjectTableViewControllerBase/*.{h,m}'
             end

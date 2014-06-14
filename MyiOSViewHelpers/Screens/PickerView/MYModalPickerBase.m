@@ -99,7 +99,7 @@
     if (self.callbackBlock) {
         self.callbackBlock(self,NO);
     } else if (self.dateCallbackBlock) {
-        self.callbackBlock(self,NO);
+        self.dateCallbackBlock(self,NO);
     }
     
     [self dismissPicker];
