@@ -31,7 +31,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.keyboardControls = [[APLKeyboardControls alloc] initWithInputFields:self.textFields];
+    self.keyboardControls = [[APLKeyboardControls alloc] initWithInputFields:self.textViewsAndFields];
     self.keyboardControls.hasPreviousNext = YES;
     self.statusBarNotification = [CWStatusBarNotification new];
     self.validators = [NSMutableArray new];
@@ -104,6 +104,28 @@
 
 #pragma mark - Overrides -
 
+- (NSArray*) textViewsAndFields
+{
+    if (!_textViewsAndFields) {
+        
+        @synchronized (self) {
+            
+            _textViewsAndFields = [[NSMutableArray alloc] init];
+            
+            for (UIView *view in self.view.allSubviews) {
+                
+                if ([view isKindOfClass:[UITextField class]] || [view isKindOfClass:[UITextView class]]) {
+                    
+                    [_textViewsAndFields addObject:view];
+                }
+            }
+        }
+    }
+    
+    return _textViewsAndFields;
+
+}
+
 - (NSArray*) textFields
 {
     if (!_textFields) {
@@ -125,13 +147,34 @@
     return _textFields;
 }
 
+- (NSArray*) textViews
+{
+    if (!_textViews) {
+        
+        @synchronized (self) {
+            
+            _textViews = [[NSMutableArray alloc] init];
+            
+            for (UIView *view in self.view.allSubviews) {
+                
+                if ([view isKindOfClass:[UITextView class]]) {
+                    
+                    [_textViews addObject:view];
+                }
+            }
+        }
+    }
+    
+    return _textViews;
+}
+
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    NSInteger textFieldIndex = [self.textFields indexOfObject:textField];
+    NSInteger textFieldIndex = [self.textViewsAndFields indexOfObject:textField];
     
-    if (textFieldIndex < self.textFields.count - 1) {
-        [(UITextField *)self.textFields[textFieldIndex + 1] becomeFirstResponder];
+    if (textFieldIndex < self.textViewsAndFields.count - 1) {
+        [(UITextField *)self.textViewsAndFields[textFieldIndex + 1] becomeFirstResponder];
     } else {
         [textField resignFirstResponder];
     }

@@ -21,6 +21,8 @@
 }
 
 @property (strong, nonatomic) NSMutableArray *textFields;
+@property (strong, nonatomic) NSMutableArray *textViews;
+@property (strong, nonatomic) NSMutableArray *textViewsAndFields;
 @property (strong, nonatomic) NSMutableArray *validators;
 @property (nonatomic) BOOL isValid;
 @property (nonatomic,strong)  NSMutableString *errorString;
