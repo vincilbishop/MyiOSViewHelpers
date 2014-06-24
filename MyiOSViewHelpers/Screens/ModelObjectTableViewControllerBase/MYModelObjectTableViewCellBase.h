@@ -16,6 +16,7 @@
 @property (nonatomic,strong) MYModelObjectBase *modelObject;
 @property (nonatomic,strong) MYModelObjectTableViewControllerBase *parentTableViewController;
 
++ (MYModelObjectTableViewCellBase*) newTableViewCell;
 - (void) configureWithModelObject:(MYModelObjectBase*)modelObject;
 
 @end
