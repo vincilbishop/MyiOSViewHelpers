@@ -25,7 +25,8 @@
 @property (strong, nonatomic) NSMutableArray *textViewsAndFields;
 @property (strong, nonatomic) NSMutableArray *validators;
 @property (nonatomic) BOOL isValid;
-@property (nonatomic,strong)  NSMutableString *errorString;
+@property (nonatomic,strong) NSMutableString *errorString;
+@property (nonatomic,strong) NSMutableArray *errorMessages;
 @property (nonatomic,strong) APLKeyboardControls *keyboardControls;
 @property (nonatomic,strong) CWStatusBarNotification *statusBarNotification;
 

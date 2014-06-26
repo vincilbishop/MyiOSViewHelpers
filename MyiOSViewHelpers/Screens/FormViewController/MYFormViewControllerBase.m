@@ -74,7 +74,18 @@
                 
         }
     };
-    [control attachValidator:validator];
+    
+    if([control respondsToSelector:@selector(attachValidator:)])
+    {
+        [control attachValidator:validator];
+    }
+    
+    if ([control respondsToSelector:@selector(text)]) {
+        NSString *string = [control performSelector:@selector(text) withObject:nil];
+        [validator validate:string];
+    }
+    
+    
     [self.validators addObject:validator];
 }
 
@@ -82,15 +93,41 @@
 {
     __block BOOL formIsValid = YES;
     
+    // Let's remove all error message objects
+    [self.errorMessages removeAllObjects];
+    
     [self.validators enumerateObjectsUsingBlock:^(ALPValidator *validator, NSUInteger idx, BOOL *stop) {
         
         if (!validator.isValid) {
             formIsValid = validator.isValid;
-            *stop = YES;
+            [self addErrorMessages:validator.errorMessages];
+            //*stop = YES;
         }
     }];
     
     return formIsValid;
+}
+
+- (void) addErrorMessages:(NSArray*)errorMessages
+{
+    if (!self.errorMessages) {
+        self.errorMessages = [NSMutableArray new];
+    }
+    
+    [self.errorMessages addObjectsFromArray:errorMessages];
+}
+
+- (NSString*) errorString
+{
+    _errorString = [NSMutableString new];
+    
+    [self.errorMessages enumerateObjectsUsingBlock:^(NSString *errorMessage, NSUInteger idx, BOOL *stop) {
+        
+        [_errorString appendFormat:@"%@\n",errorMessage];
+        
+    }];
+    
+    return _errorString;
 }
 
 - (void) showAlertIfFormInvalidWithSuccess:(MYCompletionBlock)successBlock
@@ -98,7 +135,7 @@
     if (self.formIsValid) {
         successBlock(self,YES,nil,[NSNumber numberWithBool:YES]);
     } else {
-        [UIAlertView showWithTitle:@"Error" message:@"The form is not valid. Please check the input and try again." cancelButtonTitle:@"Ok" otherButtonTitles:nil tapBlock:NULL];
+        [UIAlertView showWithTitle:@"Error" message:self.errorString cancelButtonTitle:@"Ok" otherButtonTitles:nil tapBlock:NULL];
     }
 }
 
