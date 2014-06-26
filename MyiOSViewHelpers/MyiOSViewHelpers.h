@@ -13,6 +13,7 @@
 
 #import "UIStoryboard+KPAConvenience.h"
 #import "UIAlertView+Blocks.h"
+#import "EDColor.h"
 
 #import "MyiOSThirdPartyViewHelpers.h"
 #import "MyiOSViewCategories.h"

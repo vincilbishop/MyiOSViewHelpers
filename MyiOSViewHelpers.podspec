@@ -13,9 +13,10 @@ Pod::Spec.new do |spec|
     
 	spec.resource = 'MyiOSViewHelpers.podspec'
     
-    spec.prefix_header_contents = '#import "UIStoryboard+KPAConvenience.h"', '#import "UIAlertView+Blocks.h"'
+    spec.prefix_header_contents = '#import "UIStoryboard+KPAConvenience.h"', '#import "UIAlertView+Blocks.h"', '#import "EDColor.h"'
     spec.ios.dependency 'KPAStoryboardConvenience', '~>1.0.1'
     spec.ios.dependency 'UIAlertView+Blocks', '~>0.8'
+    spec.ios.dependency 'EDColor', '~>0.4.0'
     
 	spec.source_files = 'MyiOSViewHelpers/*.{h,m}'
 	
