@@ -49,7 +49,7 @@ Pod::Spec.new do |spec|
 				drawers.prefix_header_contents = 	'#import "MMDrawerController.h"',
                 '#import "MMDrawerBarButtonItem.h"',
                 '#import "UIViewController+MMDrawerController.h"',
-                '#import "UIStoryboard+KPAConvenience.h"',
+                '#import "UIStoryboard+KPAConvenience.h"'
 				drawers.source_files = 'MyiOSViewHelpers/Screens/Drawers/*.{h,m}'
 				drawers.ios.dependency 'MMDrawerController', '~> 0.5.2'
                 drawers.ios.dependency 'KPAStoryboardConvenience', '~>1.0.1'

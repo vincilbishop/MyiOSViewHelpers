@@ -15,3 +15,4 @@
 #import "UIView+HierarchyAdditions.h"
 #import "UIView+RemoveSubviews.h"
 #import "UIView+MyRoundCorners.h"
+#import "UIView+NibAdditions.h"
