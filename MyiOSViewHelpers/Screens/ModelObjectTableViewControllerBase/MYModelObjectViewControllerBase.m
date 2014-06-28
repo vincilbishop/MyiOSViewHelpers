@@ -33,10 +33,8 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"pushToDetails"]) {
-        
-        [self setModelObject:self.modelObject forDestination:segue.destinationViewController];
-        
+    if ([segue.identifier hasPrefix:@"pushToDetails"]) {
+         [self setModelObject:self.modelObject forDestination:segue.destinationViewController];
     }
 }
 
