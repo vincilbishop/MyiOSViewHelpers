@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIScrollView+EmptyDataSet.h"
 
-@interface MYTableViewControllerBase : UITableViewController
+@interface MYTableViewControllerBase : UITableViewController <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
 @property (nonatomic,strong) NSMutableArray *objects;
 @property (nonatomic,strong) NSString *reuseIdentifier;

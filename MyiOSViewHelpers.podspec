@@ -92,6 +92,7 @@ Pod::Spec.new do |spec|
 
             screens.subspec "TableViewControllerBase" do |table|
 				table.source_files = 'MyiOSViewHelpers/Screens/TableViewControllerBase/*.{h,m}'
+                table.ios.dependency 'DZNEmptyDataSet', '~>1.3.1'
             end
             
             screens.subspec "ModelObjectTableViewControllerBase" do |modeltable|
