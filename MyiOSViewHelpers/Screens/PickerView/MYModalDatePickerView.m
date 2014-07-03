@@ -67,7 +67,7 @@
 }
 
 - (NSDate *)selectedDate {
-    if (_picker) {
+    if (!_selectedDate && _picker) {
         UIDatePicker *datePicker = (UIDatePicker *)self.picker;
         _selectedDate = datePicker.date;
     }
