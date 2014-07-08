@@ -11,6 +11,8 @@
 #import "MMDrawerController.h"
 #import "MMDrawerBarButtonItem.h"
 
+
+
 @interface MYDrawerViewController : MMDrawerController
 
 @property (nonatomic,strong) UIStoryboard *storyboard;
@@ -23,5 +25,6 @@
 + (void) setRightDrawerViewController:(UIViewController*)viewController;
 
 - (void) goToViewControllerWithIdentifier:(NSString*)identifier storyboard:(UIStoryboard*)storyboard;
+- (void) goToViewController:(UIViewController*)viewController;
 
 @end

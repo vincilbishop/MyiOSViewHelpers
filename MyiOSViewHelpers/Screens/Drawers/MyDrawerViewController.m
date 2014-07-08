@@ -8,15 +8,17 @@
 
 #import "MYDrawerViewController.h"
 
+static UIViewController *_leftDrawerViewController;
+static UIViewController *_centerViewController;
+static UIViewController *_rightDrawerViewController;
+
 @implementation MYDrawerViewController
 
 #pragma mark - Static -
 
 static MYDrawerViewController *_sharedViewController;
 
-static UIViewController *_leftDrawerViewController;
-static UIViewController *_centerViewController;
-static UIViewController *_rightDrawerViewController;
+
 
 + (MYDrawerViewController*) sharedViewController
 {
@@ -73,16 +75,15 @@ static UIViewController *_rightDrawerViewController;
 
 - (void) goToViewControllerWithIdentifier:(NSString*)identifier storyboard:(UIStoryboard*)storyboard
 {
-    if (!storyboard) {
-        storyboard = self.storyboard;
-    }
-    
+    [self goToViewController:[storyboard instantiateViewControllerWithIdentifier:identifier]];
+}
+
+- (void) goToViewController:(UIViewController*)viewController
+{
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         
-        self.centerViewController = [storyboard instantiateViewControllerWithIdentifier:identifier];
-        [self closeDrawerAnimated:YES completion:^(BOOL finished) {
-            
-        }];
+        self.centerViewController = viewController;
+        [self closeDrawerAnimated:YES completion:NULL];
     }];
 }
 
