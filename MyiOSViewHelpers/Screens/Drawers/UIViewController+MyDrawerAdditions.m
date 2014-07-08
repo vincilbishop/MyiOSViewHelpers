@@ -67,7 +67,7 @@
 - (void) goToViewControllerWithIdentifier:(NSString *)identifier
 {
     [[MYDrawerViewController sharedViewController] goToViewControllerWithIdentifier:identifier storyboard:[UIStoryboard mainStoryboard]];
-    [[MYDrawerViewController sharedViewController] closeDrawerAnimated:YES completion:NULL];
+    //[[MYDrawerViewController sharedViewController] closeDrawerAnimated:YES completion:NULL];
 }
 
 @end

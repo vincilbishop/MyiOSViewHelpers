@@ -79,8 +79,9 @@ static UIViewController *_rightDrawerViewController;
     
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         
+        self.centerViewController = [storyboard instantiateViewControllerWithIdentifier:identifier];
         [self closeDrawerAnimated:YES completion:^(BOOL finished) {
-            self.centerViewController = [storyboard instantiateViewControllerWithIdentifier:identifier];
+            
         }];
     }];
 }

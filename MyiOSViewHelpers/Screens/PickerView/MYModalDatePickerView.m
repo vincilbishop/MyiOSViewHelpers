@@ -67,9 +67,11 @@
 }
 
 - (NSDate *)selectedDate {
-    if (!_selectedDate && _picker) {
+    if (_picker) {
         UIDatePicker *datePicker = (UIDatePicker *)self.picker;
-        _selectedDate = datePicker.date;
+        if(!_selectedDate){
+            _selectedDate = datePicker.date;
+        }
     }
 
     return _selectedDate;
@@ -104,7 +106,7 @@
 #pragma mark - Custom Setters
 
 - (void)setSelectedDate:(NSDate *)selectedDate {
-    if (_selectedDate != selectedDate) {
+    if (selectedDate && _selectedDate != selectedDate) {
         _selectedDate = selectedDate;
         
         if (self.picker) {
