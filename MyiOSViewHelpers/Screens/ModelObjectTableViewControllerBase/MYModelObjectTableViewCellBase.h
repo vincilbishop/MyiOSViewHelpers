@@ -18,5 +18,6 @@
 
 + (MYModelObjectTableViewCellBase*) newTableViewCell;
 - (void) configureWithModelObject:(MYModelObjectBase*)modelObject;
+- (UITableView *) parentTableView;
 
 @end
