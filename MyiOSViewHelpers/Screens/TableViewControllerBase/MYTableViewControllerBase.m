@@ -184,6 +184,14 @@
     return cellIdentifier;
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *cellIdentifier = [self cellIdentifierForRowAtIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    return cell.frame.size.height;
+}
+
 - (UITableViewCell *) tableView:(UITableView *)tableView configureCell:(UITableViewCell*)cell withObject:(id)object atIndexPath:(NSIndexPath *)indexPath
 {
     NSAssert([self respondsToSelector:_cmd],@"Must Override!");
