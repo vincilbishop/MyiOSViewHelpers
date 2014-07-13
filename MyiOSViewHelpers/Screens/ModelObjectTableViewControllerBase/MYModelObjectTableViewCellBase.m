@@ -40,4 +40,10 @@
     return nil; // this view is not within a tableView
 }
 
+- (NSIndexPath*) indexPath
+{
+    NSIndexPath *indexPath = [self.parentTableView indexPathForCell:self];
+    return indexPath;
+}
+
 @end

@@ -19,5 +19,6 @@
 + (MYModelObjectTableViewCellBase*) newTableViewCell;
 - (void) configureWithModelObject:(MYModelObjectBase*)modelObject;
 - (UITableView *) parentTableView;
+- (NSIndexPath*) indexPath;
 
 @end
