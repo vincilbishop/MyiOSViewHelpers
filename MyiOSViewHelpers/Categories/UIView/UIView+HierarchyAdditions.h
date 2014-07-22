@@ -1,6 +1,7 @@
 
 @interface UIView(HierarchyAdditions)
 
--(NSArray *) allSubviews;	// recursive
+- (NSArray *) allSubviews;	// recursive
+- (UIViewController *) parentViewController;
 
 @end
