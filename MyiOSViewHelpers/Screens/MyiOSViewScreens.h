@@ -17,6 +17,7 @@
 #import "MYLoginViewControllerBase.h"
 #import "MYTableViewControllerBase.h"
 #import "MYModelObjectTableViewControllerBase.h"
+#import "MYModelObjectViewBase.h"
 #import "MYModelObjectViewControllerBase.h"
 #import "MYModalDatePickerView.h"
 #import "MYModalPickerView.h"
