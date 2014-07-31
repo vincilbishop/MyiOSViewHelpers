@@ -26,5 +26,6 @@
 
 - (void) goToViewControllerWithIdentifier:(NSString*)identifier storyboard:(UIStoryboard*)storyboard;
 - (void) goToViewController:(UIViewController*)viewController;
+- (void) goToViewController:(UIViewController*)viewController animated:(BOOL)animated;
 
 @end

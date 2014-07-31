@@ -80,10 +80,15 @@ static MYDrawerViewController *_sharedViewController;
 
 - (void) goToViewController:(UIViewController*)viewController
 {
+    [self goToViewController:viewController animated:YES];
+}
+
+- (void) goToViewController:(UIViewController*)viewController animated:(BOOL)animated
+{
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         
         self.centerViewController = viewController;
-        [self closeDrawerAnimated:YES completion:NULL];
+        [self closeDrawerAnimated:animated completion:NULL];
     }];
 }
 
