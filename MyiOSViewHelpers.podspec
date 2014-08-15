@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
     
 	spec.name		= 'MyiOSViewHelpers'
-	spec.version	= '0.0.3'
+	spec.version	= '0.1.0'
 	spec.homepage   = "http://github.com/premosystems/MyiOSViewHelpers"
 	spec.author     = { "Vincil Bishop" => "vincil.bishop@vbishop.com" }
 	spec.license	= 'MIT'
@@ -17,6 +17,8 @@ Pod::Spec.new do |spec|
     spec.ios.dependency 'KPAStoryboardConvenience', '~>1.0.1'
     spec.ios.dependency 'UIAlertView+Blocks', '~>0.8'
     spec.ios.dependency 'EDColor', '~>0.4.0'
+    
+    myiOSHelpers_version = '~>0.1'
     
 	spec.source_files = 'MyiOSViewHelpers/*.{h,m}'
 	
@@ -38,7 +40,7 @@ Pod::Spec.new do |spec|
             
             view_categories.subspec "UIImageView" do |uiimageview|
                 uiimageview.source_files = "MyiOSViewHelpers/Categories/UIImageView/*.{h,m}"
-                uiimageview.ios.dependency 'MyiOSViewHelpers/Categories/UIImage'
+                uiimageview.ios.dependency 'MyiOSViewHelpers/Categories/UIImage', spec.version.to_s
             end
 		end
 		
@@ -58,48 +60,48 @@ Pod::Spec.new do |spec|
             screens.subspec "ImagePicker" do |imagePicker|
 				imagePicker.source_files = 'MyiOSViewHelpers/Screens/ImagePicker/*.{h,m}'
                 imagePicker.ios.dependency 'UIActionSheet+Blocks'
-                imagePicker.ios.dependency 'MyiOSHelpers/Logic/Categories'
+                imagePicker.ios.dependency 'MyiOSHelpers/Logic/Categories', myiOSHelpers_version
 			end
 			
 			screens.subspec "FormViewController" do |form|
                 form.prefix_header_contents = '#import "MyiOSLogicCategories.h"', '#import "MyiOSLogicBlocks.h"', '#import "UIAlertView+Blocks.h"', '#import "Underscore.h"', '#ifndef _', '#define _ Underscore', '#endif'
 				form.source_files = 'MyiOSViewHelpers/Screens/FormViewController/*.{h,m}'
 				form.ios.dependency 'UIAlertView+Blocks', '~>0.8'
-                form.ios.dependency 'TPKeyboardAvoiding', '~>1.2.3'
-				form.ios.dependency 'US2FormValidator', '~> 1.1.2'
+                form.ios.dependency 'TPKeyboardAvoiding', '~>1.2'
+				form.ios.dependency 'US2FormValidator', '~> 1.1'
                 form.ios.dependency 'ALPValidator', '~> 0.0.3'
-                form.ios.dependency 'CWStatusBarNotification', '~> 2.1.1'
-                form.ios.dependency 'APLKeyboardControls', '~>0.1.2'
-                form.ios.dependency 'ASCFlatUIColor', '~>0.1.0'
-				form.ios.dependency 'MyiOSHelpers/Logic/Blocks'
-                form.ios.dependency 'MyiOSHelpers/Logic/Categories'
-				form.ios.dependency 'MyiOSViewHelpers/Categories'
-                form.ios.dependency 'Underscore.m', '~>0.2.1'
+                form.ios.dependency 'CWStatusBarNotification', '~> 2.1'
+                form.ios.dependency 'APLKeyboardControls', '~>0.1'
+                form.ios.dependency 'ASCFlatUIColor', '~>0.1'
+				form.ios.dependency 'MyiOSHelpers/Logic/Blocks', myiOSHelpers_version
+                form.ios.dependency 'MyiOSHelpers/Logic/Categories', myiOSHelpers_version
+				form.ios.dependency 'MyiOSViewHelpers/Categories', myiOSHelpers_version
+                form.ios.dependency 'Underscore.m', '~>0.2'
 			end
 			
 			screens.subspec "LoginViewController" do |login|
 				login.source_files = 'MyiOSViewHelpers/Screens/LoginViewController/*.{h,m}'
-				login.ios.dependency 'MyiOSViewHelpers/Screens/FormViewController'
+				login.ios.dependency 'MyiOSViewHelpers/Screens/FormViewController', spec.version.to_s
 				login.ios.dependency 'MBProgressHUD', '~>0.8'
             end
             
             screens.subspec "PickerView" do |pickerView|
 				pickerView.source_files = 'MyiOSViewHelpers/Screens/PickerView/*.{h,m}'
-				pickerView.ios.dependency 'MyiOSViewHelpers/Screens/PickerView'
-                pickerView.ios.dependency 'MyiOSHelpers/Logic/Blocks'
-				pickerView.ios.dependency 'RMDateSelectionViewController', '~>1.2.1'
+				pickerView.ios.dependency 'MyiOSViewHelpers/Screens/PickerView', spec.version.to_s
+                pickerView.ios.dependency 'MyiOSHelpers/Logic/Blocks', myiOSHelpers_version
+				pickerView.ios.dependency 'RMDateSelectionViewController', '~>1.2'
             end
 
             screens.subspec "TableViewControllerBase" do |table|
 				table.source_files = 'MyiOSViewHelpers/Screens/TableViewControllerBase/*.{h,m}'
-                table.ios.dependency 'DZNEmptyDataSet', '~>1.3.1'
+                table.ios.dependency 'DZNEmptyDataSet', '~>1.3'
             end
             
             screens.subspec "ModelObjectTableViewControllerBase" do |modeltable|
+                modeltable.source_files = 'MyiOSViewHelpers/Screens/ModelObjectTableViewControllerBase/*.{h,m}'
             	modeltable.ios.dependency 'MyiOSHelpers/Logic/ThirdPartyHelpers/KeyValueObjectMapping'
-                modeltable.ios.dependency 'MyiOSViewHelpers/Screens/FormViewController'
-                modeltable.ios.dependency 'MyiOSViewHelpers/Screens/TableViewControllerBase'
-				modeltable.source_files = 'MyiOSViewHelpers/Screens/ModelObjectTableViewControllerBase/*.{h,m}'
+                modeltable.ios.dependency 'MyiOSViewHelpers/Screens/FormViewController', spec.version.to_s
+                modeltable.ios.dependency 'MyiOSViewHelpers/Screens/TableViewControllerBase', spec.version.to_s
             end
             
 		end
