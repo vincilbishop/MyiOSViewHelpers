@@ -18,7 +18,7 @@ Pod::Spec.new do |spec|
     spec.ios.dependency 'UIAlertView+Blocks', '~>0.8'
     spec.ios.dependency 'EDColor', '~>0.4.0'
     
-    myiOSHelpers_version = '~>0.1'
+    myiOSHelpers_version = '~>0.1.0'
     
 	spec.source_files = 'MyiOSViewHelpers/*.{h,m}'
 	
