@@ -67,16 +67,16 @@ Pod::Spec.new do |spec|
                 form.prefix_header_contents = '#import "MyiOSLogicCategories.h"', '#import "MyiOSLogicBlocks.h"', '#import "UIAlertView+Blocks.h"', '#import "Underscore.h"', '#ifndef _', '#define _ Underscore', '#endif'
 				form.source_files = 'MyiOSViewHelpers/Screens/FormViewController/*.{h,m}'
 				form.ios.dependency 'UIAlertView+Blocks', '~>0.8'
-                form.ios.dependency 'TPKeyboardAvoiding', '~>1.2'
-				form.ios.dependency 'US2FormValidator', '~> 1.1'
+                form.ios.dependency 'TPKeyboardAvoiding', '~>1.2.3'
+				form.ios.dependency 'US2FormValidator', '~> 1.1.2'
                 form.ios.dependency 'ALPValidator', '~> 0.0.3'
-                form.ios.dependency 'CWStatusBarNotification', '~> 2.1'
-                form.ios.dependency 'APLKeyboardControls', '~>0.1'
-                form.ios.dependency 'ASCFlatUIColor', '~>0.1'
+                form.ios.dependency 'CWStatusBarNotification', '~> 2.1.1'
+                form.ios.dependency 'APLKeyboardControls', '~>0.1.2'
+                form.ios.dependency 'ASCFlatUIColor', '~>0.1.0'
 				form.ios.dependency 'MyiOSHelpers/Logic/Blocks', myiOSHelpers_version
                 form.ios.dependency 'MyiOSHelpers/Logic/Categories', myiOSHelpers_version
-				form.ios.dependency 'MyiOSViewHelpers/Categories', myiOSHelpers_version
-                form.ios.dependency 'Underscore.m', '~>0.2'
+				form.ios.dependency 'MyiOSViewHelpers/Categories', spec.version.to_s
+                form.ios.dependency 'Underscore.m', '~>0.2.1'
 			end
 			
 			screens.subspec "LoginViewController" do |login|
@@ -89,12 +89,12 @@ Pod::Spec.new do |spec|
 				pickerView.source_files = 'MyiOSViewHelpers/Screens/PickerView/*.{h,m}'
 				pickerView.ios.dependency 'MyiOSViewHelpers/Screens/PickerView', spec.version.to_s
                 pickerView.ios.dependency 'MyiOSHelpers/Logic/Blocks', myiOSHelpers_version
-				pickerView.ios.dependency 'RMDateSelectionViewController', '~>1.2'
+				pickerView.ios.dependency 'RMDateSelectionViewController', '~>1.2.1'
             end
 
             screens.subspec "TableViewControllerBase" do |table|
 				table.source_files = 'MyiOSViewHelpers/Screens/TableViewControllerBase/*.{h,m}'
-                table.ios.dependency 'DZNEmptyDataSet', '~>1.3'
+                table.ios.dependency 'DZNEmptyDataSet', '~>1.3.1'
             end
             
             screens.subspec "ModelObjectTableViewControllerBase" do |modeltable|
