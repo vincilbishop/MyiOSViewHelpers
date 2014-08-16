@@ -7,17 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MYParseableModelObject.h"
 
-@class MYModelObjectBase;
 @class MYModelObjectTableViewControllerBase;
 
 @interface MYModelObjectTableViewCellBase : UITableViewCell
 
-@property (nonatomic,strong) MYModelObjectBase *modelObject;
+@property (nonatomic,strong) id<MYParseableModelObject> modelObject;
 @property (nonatomic,strong) MYModelObjectTableViewControllerBase *parentTableViewController;
 
 + (MYModelObjectTableViewCellBase*) newTableViewCell;
-- (void) configureWithModelObject:(MYModelObjectBase*)modelObject;
+- (void) configureWithModelObject:(id<MYParseableModelObject>)modelObject;
 - (UITableView *) parentTableView;
 - (NSIndexPath*) indexPath;
 

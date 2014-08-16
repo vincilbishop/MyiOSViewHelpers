@@ -7,7 +7,6 @@
 //
 
 #import "MYModelObjectTableViewCellBase.h"
-#import "MYModelObjectBase.h"
 #import "MYModelObjectTableViewControllerBase.h"
 
 @implementation MYModelObjectTableViewCellBase
@@ -23,7 +22,7 @@
     return newTableViewCell;
 }
 
-- (void) configureWithModelObject:(MYModelObjectBase*)modelObject
+- (void) configureWithModelObject:(id<MYParseableModelObject>)modelObject
 {
     self.modelObject = modelObject;
 }

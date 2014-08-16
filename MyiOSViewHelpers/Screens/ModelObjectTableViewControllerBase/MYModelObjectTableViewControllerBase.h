@@ -7,9 +7,7 @@
 //
 
 #import "MYTableViewControllerBase.h"
-
-@class MYModelObjectBase;
-@protocol MYParseableModelObject;
+#import "MYParseableModelObject.h"
 
 @interface MYModelObjectTableViewControllerBase : MYTableViewControllerBase
 
@@ -20,7 +18,7 @@
 - (void) reloadWithDictionaries:(NSArray*)objectDictionaries;
 - (void) reloadSection:(NSUInteger)section withDictionaries:(NSArray*)objectDictionaries;
 
-- (UITableViewCell *) tableView:(UITableView *)tableView configureCell:(UITableViewCell*)cell withModelObject:(MYModelObjectBase*)object atIndexPath:(NSIndexPath *)indexPath;
+- (UITableViewCell *) tableView:(UITableView *)tableView configureCell:(UITableViewCell*)cell withModelObject:(id<MYParseableModelObject>)object atIndexPath:(NSIndexPath *)indexPath;
 
 - (id) selectedObject;
 - (NSArray*) selectedObjects;

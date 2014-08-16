@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
     
 	spec.name		= 'MyiOSViewHelpers'
-	spec.version	= '0.1.0'
+	spec.version	= '1.0.0'
 	spec.homepage   = "http://github.com/premosystems/MyiOSViewHelpers"
 	spec.author     = { "Vincil Bishop" => "vincil.bishop@vbishop.com" }
 	spec.license	= 'MIT'
@@ -18,7 +18,7 @@ Pod::Spec.new do |spec|
     spec.ios.dependency 'UIAlertView+Blocks', '~>0.8'
     spec.ios.dependency 'EDColor', '~>0.4.0'
     
-    myiOSHelpers_version = '~>0.1.0'
+    myiOSHelpers_version = '~>1.0.0'
     
 	spec.source_files = 'MyiOSViewHelpers/*.{h,m}'
 	

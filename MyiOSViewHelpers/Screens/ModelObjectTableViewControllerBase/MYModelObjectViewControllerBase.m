@@ -24,7 +24,7 @@
     
 }
 
-- (void) configureWithModelObject:(MYModelObjectBase*)modelObject
+- (void) configureWithModelObject:(id<MYParseableModelObject>)modelObject
 {
     self.modelObject = modelObject;
 }
@@ -38,7 +38,7 @@
     }
 }
 
-- (void) setModelObject:(MYModelObjectBase *)modelObject forDestination:(UIViewController*)destinationController
+- (void) setModelObject:(id<MYParseableModelObject>)modelObject forDestination:(UIViewController*)destinationController
 {
     MYModelObjectViewControllerBase *controller = nil;
     

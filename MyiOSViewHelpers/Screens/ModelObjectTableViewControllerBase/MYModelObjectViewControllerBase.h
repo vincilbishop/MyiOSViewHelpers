@@ -7,15 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MYParseableModelObject.h"
 #import "MYFormViewControllerBase.h"
-
-@class MYModelObjectBase;
 
 @interface MYModelObjectViewControllerBase : MYFormViewControllerBase
 
-@property (nonatomic,strong) MYModelObjectBase *modelObject;
+@property (nonatomic,strong) id<MYParseableModelObject> modelObject;
 
-- (void) configureWithModelObject:(MYModelObjectBase*)modelObject;
-- (void) setModelObject:(MYModelObjectBase *)modelObject forDestination:(UIViewController*)destinationController;
+- (void) configureWithModelObject:(id<MYParseableModelObject>)modelObject;
+- (void) setModelObject:(id<MYParseableModelObject>)modelObject forDestination:(UIViewController*)destinationController;
 
 @end

@@ -7,11 +7,10 @@
 //
 
 #import "MYModelObjectViewBase.h"
-#import "MYModelObjectBase.h"
 
 @implementation MYModelObjectViewBase
 
-- (void) configureWithModelObject:(MYModelObjectBase*)modelObject
+- (void) configureWithModelObject:(id<MYParseableModelObject>)modelObject
 {
     self.modelObject = modelObject;
 }

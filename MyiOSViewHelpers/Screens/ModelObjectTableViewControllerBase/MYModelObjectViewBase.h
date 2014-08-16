@@ -7,12 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@class MYModelObjectBase;
+#import "MYParseableModelObject.h"
 
 @interface MYModelObjectViewBase : UIView
 
-@property (nonatomic,strong) MYModelObjectBase *modelObject;
-- (void) configureWithModelObject:(MYModelObjectBase*)modelObject;
+@property (nonatomic,strong) id<MYParseableModelObject> modelObject;
+- (void) configureWithModelObject:(id<MYParseableModelObject>)modelObject;
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "MYModelObjectTableViewControllerBase.h"
-#import "MYModelObjectBase.h"
 #import "MYModelObjectTableViewCellBase.h"
 #import "MYModelObjectViewControllerBase.h"
 
@@ -35,7 +34,7 @@
     return [self tableView:tableView configureCell:cell withModelObject:object atIndexPath:indexPath];
 }
 
-- (UITableViewCell *) tableView:(UITableView *)tableView configureCell:(UITableViewCell*)cell withModelObject:(MYModelObjectBase*)object atIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *) tableView:(UITableView *)tableView configureCell:(UITableViewCell*)cell withModelObject:(id<MYParseableModelObject>)object atIndexPath:(NSIndexPath *)indexPath
 {
     MYModelObjectTableViewCellBase *modelCell = (MYModelObjectTableViewCellBase*)cell;
     
