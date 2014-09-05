@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
     
 	spec.name		= 'MyiOSViewHelpers'
-	spec.version	= '1.0.0'
+	spec.version	= '1.0.1'
 	spec.homepage   = "http://github.com/premosystems/MyiOSViewHelpers"
 	spec.author     = { "Vincil Bishop" => "vincil.bishop@vbishop.com" }
 	spec.license	= 'MIT'
@@ -102,6 +102,13 @@ Pod::Spec.new do |spec|
             	modeltable.ios.dependency 'MyiOSHelpers/Logic/ThirdPartyHelpers/KeyValueObjectMapping'
                 modeltable.ios.dependency 'MyiOSViewHelpers/Screens/FormViewController', spec.version.to_s
                 modeltable.ios.dependency 'MyiOSViewHelpers/Screens/TableViewControllerBase', spec.version.to_s
+            end
+            
+            screens.subspec "ModelObjectCollectionViewControllerBase" do |modelcollection|
+                modelcollection.source_files = 'MyiOSViewHelpers/Screens/ModelObjectCollectionViewControllerBase/*.{h,m}'
+            	modelcollection.ios.dependency 'MyiOSHelpers/Logic/ThirdPartyHelpers/KeyValueObjectMapping'
+                modelcollection.ios.dependency 'MyiOSViewHelpers/Screens/FormViewController', spec.version.to_s
+                modelcollection.ios.dependency 'MyiOSViewHelpers/Screens/TableViewControllerBase', spec.version.to_s
             end
             
 		end
