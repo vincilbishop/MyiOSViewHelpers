@@ -97,6 +97,10 @@ Pod::Spec.new do |spec|
                 table.ios.dependency 'DZNEmptyDataSet', '~>1.3.1'
             end
             
+            screens.subspec "CollectionViewControllerBase" do |collection|
+				collection.source_files = 'MyiOSViewHelpers/Screens/CollectionViewControllerBase/*.{h,m}'
+            end
+            
             screens.subspec "ModelObjectTableViewControllerBase" do |modeltable|
                 modeltable.source_files = 'MyiOSViewHelpers/Screens/ModelObjectTableViewControllerBase/*.{h,m}'
             	modeltable.ios.dependency 'MyiOSHelpers/Logic/ThirdPartyHelpers/KeyValueObjectMapping'
