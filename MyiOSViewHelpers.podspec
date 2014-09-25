@@ -112,7 +112,7 @@ Pod::Spec.new do |spec|
                 modelcollection.source_files = 'MyiOSViewHelpers/Screens/ModelObjectCollectionViewControllerBase/*.{h,m}'
             	modelcollection.ios.dependency 'MyiOSHelpers/Logic/ThirdPartyHelpers/KeyValueObjectMapping'
                 modelcollection.ios.dependency 'MyiOSViewHelpers/Screens/FormViewController', spec.version.to_s
-                modelcollection.ios.dependency 'MyiOSViewHelpers/Screens/TableViewControllerBase', spec.version.to_s
+                modelcollection.ios.dependency 'MyiOSViewHelpers/Screens/CollectionViewControllerBase', spec.version.to_s
             end
             
 		end
